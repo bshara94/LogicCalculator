@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">Logic Calculator</string>
+    <string-array name="numbers">
+        <item>Truth Table</item>
+        <item>Conjunctive Normal Form</item>
+        <item>Disjunctive Normal Form</item>
+        <item>Semantics propositions</item>
+        <item>Semantics equivalence</item>
+    </string-array>
+    <string name="NotSign">\u00AC</string>
+    <string name="OrSign">\u2228</string>
+    <string name="AndSign">\u2227</string>
+    <string name="DEDUCTIONSign">\u22A7</string>
+    <string name="multidedsign">\u2AE4\u22A7</string>
+    <string name="multidedsign2">\u2194</string>
+    <string name="LeftParSign">(</string>
+    <string name="RightParSign">)</string>
+    <string name="SeparatorSign">,</string>
+    <string name="IMPLIESSign">\u2192</string>
+    <string name="BIMPLIESSign">\u2194</string>
+    <string name="aboutus">Thank you for using our project. It"'"s a calculator that solve logical expressions.\nNames of students:\n1)
+        Bshara Hamati\nId: 204524185\n2)Aslam Iktelat \nId: 206143166\nMentor:\nProf"'" Dani Kotler \nYear of Project:\n2020</string>
+    <string name="TBex">:D</string>
+    <string name="CNFex">:p</string>
+    <string name="DNFex">:d</string>
+    <string name="SPex">:z</string>
+    <string name="SEex">:x</string>
+</resources>
