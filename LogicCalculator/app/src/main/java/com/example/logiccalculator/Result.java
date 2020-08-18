@@ -2,6 +2,7 @@ package com.example.logiccalculator;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
@@ -49,33 +50,49 @@ public class Result extends AppCompatActivity {
         switch(OptionNumber){
 
             case 0:
-                p= new Processor(Formula);
-                p.process(true);
-                txtResult.setText(Constants.TXT_OUTPUT);
+            case 3:
+            case 4:
+                try {
+                    p = new Processor(Formula);
+                    p.process(true);
+                    txtResult.setText(Constants.TXT_OUTPUT);
+                    Final.setVisibility(View.VISIBLE);
+                    Debug.setVisibility(View.INVISIBLE);
+                }catch (Exception e){
+                    txtResult.setText("Wrong Input");
+                    Final.setVisibility(View.INVISIBLE);
+                    Debug.setVisibility(View.INVISIBLE);
+            }
                 break;
             case 1:
+                try{
                 p = new Processor(Formula);
                 formalConverter = new FormalConverter(Formula);
                 formalConverter.convert("CNF");
                 txtResult.setText(Constants.TXT_OUTPUT);
+                    Final.setVisibility(View.VISIBLE);
+                    Debug.setVisibility(View.VISIBLE);
+                }catch (Exception e){
+                    txtResult.setText("Wrong Input");
+                    Final.setVisibility(View.INVISIBLE);
+                    Debug.setVisibility(View.INVISIBLE);
+                }
 
                 break;
             case 2:
+                try{
                 p = new Processor(Formula);
                  formalConverter = new FormalConverter(Formula);
                 formalConverter.convert("DNF");
                 txtResult.setText(Constants.TXT_OUTPUT);
+                    Final.setVisibility(View.VISIBLE);
+                    Debug.setVisibility(View.VISIBLE);
+                }catch (Exception e) {
+                    txtResult.setText("Wrong Input");
+                    Final.setVisibility(View.INVISIBLE);
+                    Debug.setVisibility(View.INVISIBLE);                }
                 break;
-            case 3:
-                p= new Processor(Formula);
-                p.process(true);
-                txtResult.setText(Constants.TXT_OUTPUT);
-                break;
-            case 4:
-                p= new Processor(Formula);
-                p.process(true);
-                txtResult.setText(Constants.TXT_OUTPUT);
-                break;
+
             default:
 
                 break;
