@@ -2,10 +2,13 @@ package com.example.logiccalculator;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ClipData;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
+import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,6 +21,7 @@ public class Result extends AppCompatActivity {
     String Formula;
     RadioButton Final,Debug;
     Processor p ;
+    Button CopyResult;
     FormalConverter formalConverter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +31,7 @@ public class Result extends AppCompatActivity {
         txtResult.setMovementMethod(new ScrollingMovementMethod());
         Final = (RadioButton)findViewById(R.id.rbFinalop);
         Debug = (RadioButton)findViewById(R.id.rbDebugop);
+        CopyResult = (Button)findViewById(R.id.CRbtn);
         OptionNumber = getIntent().getIntExtra("Options",0);
          Formula = getIntent().getStringExtra("Input");
 
@@ -45,6 +50,20 @@ public class Result extends AppCompatActivity {
             public void onClick(View view) {
                 Debug.setChecked(false);
                 txtResult.setText(Constants.TXT_OUTPUT);
+            }
+        });
+        CopyResult.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.HONEYCOMB) {
+                    android.text.ClipboardManager clipboard = (android.text.ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+                    clipboard.setText(txtResult.getText());
+                } else {
+                    android.content.ClipboardManager clipboard = (android.content.ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+                    android.content.ClipData clip = android.content.ClipData.newPlainText("Copied Text", txtResult.getText());
+                    Toast.makeText(Result.this, "Result was copied to clipboard.", Toast.LENGTH_SHORT).show();
+                    clipboard.setPrimaryClip(clip);
+                }
             }
         });
         switch(OptionNumber){
