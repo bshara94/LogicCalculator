@@ -68,13 +68,23 @@ public class TruthTable {
             return interpretMatrix;
         }
 
-        for (int i = 3; i <= columns; i++) {
-            interpretMatrix = createNewTable(interpretMatrix, i);
-        }
+
+        interpretMatrix= createTruthTableRec(3, interpretMatrix);
+
         this.rows = interpretMatrix.length;
         return interpretMatrix;
     }
 
+    private boolean[][] createTruthTableRec(int i,boolean[][] interpretMatrix)
+    {
+
+        if(i<= columns) {
+            interpretMatrix = createNewTable(interpretMatrix, i);
+           return createTruthTableRec(i+1,interpretMatrix);
+
+        }
+        return interpretMatrix;
+    }
     private boolean[][] createNewTable(boolean[][] tempMatrix, int cols) {
         int size = (int) Math.pow(2, cols);
         int half = size / 2;
